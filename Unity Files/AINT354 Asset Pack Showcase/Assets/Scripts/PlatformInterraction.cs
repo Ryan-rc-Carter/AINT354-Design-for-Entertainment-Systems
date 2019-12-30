@@ -12,7 +12,7 @@ public class PlatformInterraction : MonoBehaviour
     private float smoothing = 5.0f;
 
     [SerializeField]
-    private GameObject Skeleton, Player;
+    private GameObject Skeleton, Player, Goblin, Mimic;
 
     private GameObject currentModel = null;
 
@@ -56,6 +56,14 @@ public class PlatformInterraction : MonoBehaviour
                 
                 break;
             case (3):
+                Goblin.SetActive(true);
+                currentModel = Goblin;
+                break;
+            case (4):
+                Mimic.SetActive(true);
+                currentModel = Mimic;
+                break;
+            case (5):
                 modelNumber = 1;
                 break;
         }
