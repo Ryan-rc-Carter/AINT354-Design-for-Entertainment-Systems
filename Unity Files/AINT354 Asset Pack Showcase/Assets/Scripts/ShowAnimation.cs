@@ -6,11 +6,11 @@ public class ShowAnimation : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    private Animator animator;
+    private Animator ani_Animator;
 
     void Awake()
     {
-        animator = GetComponent<Animator>();
+        ani_Animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -18,29 +18,29 @@ public class ShowAnimation : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            animator.SetBool("isWalking", true);
+            ani_Animator.SetBool("isWalking", true);
         }
         else if (Input.GetKeyUp(KeyCode.A))
         {
-            animator.SetBool("isWalking", false);
+            ani_Animator.SetBool("isWalking", false);
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            animator.SetBool("isAttacking", true);
+            ani_Animator.SetBool("isAttacking", true);
         }
         else if(Input.GetKeyUp(KeyCode.S))
         {
-            animator.SetBool("isAttacking", false);
+            ani_Animator.SetBool("isAttacking", false);
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            animator.SetBool("isDead", true);
+            ani_Animator.SetBool("isDead", true);
         }
         else if (Input.GetKeyUp(KeyCode.D))
         {
-            animator.SetBool("isDead", false);
+            ani_Animator.SetBool("isDead", false);
         }
     }
 }

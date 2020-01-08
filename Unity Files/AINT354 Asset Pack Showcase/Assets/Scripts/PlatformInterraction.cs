@@ -1,28 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlatformInterraction : MonoBehaviour
 {
-    
-    [SerializeField]
-    private float rotationMultiplier = 50f;
 
     [SerializeField]
-    private float smoothing = 5.0f;
+    private Text T_infoText;
 
     [SerializeField]
-    private GameObject Skeleton, Player, Goblin, Mimic;
+    private float f_rotationMultiplier = 50f;
 
-    private GameObject currentModel = null;
+    //[SerializeField]
+    //private float f_smoothing = 5.0f;
 
-    private int modelNumber = 1;
+    [SerializeField]
+    private GameObject go_Skeleton, go_Player, go_Goblin, go_Mimic;
+
+    private GameObject go_currentModel = null;
+
+    private int int_modelNumber = 1;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        Player.SetActive(false);
+
+        T_infoText.text = "";
     }
 
     // Update is called once per frame
@@ -30,41 +35,47 @@ public class PlatformInterraction : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Rotate(Vector3.up, rotationMultiplier * Time.deltaTime);
+            transform.Rotate(Vector3.up, f_rotationMultiplier * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Rotate(Vector3.up, -rotationMultiplier * Time.deltaTime);
+            transform.Rotate(Vector3.up, -f_rotationMultiplier * Time.deltaTime);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            currentModel.SetActive(false);
-            modelNumber++;
+            go_currentModel.SetActive(false);
+            int_modelNumber++;
         }
 
-        switch (modelNumber)
+        switch (int_modelNumber)
         {
             case (1):
-                Skeleton.SetActive(true);
-                currentModel = Skeleton;
+                go_Skeleton.SetActive(true);
+                go_currentModel = go_Skeleton;
+                T_infoText.text = "Info\nA: Walk Animation\nS: Attack Animation\nD: Death Animation\n\nLeft and Right arrows: Rotate model\n\nSpace: Next Model\n\nL: Next Background";
                 
                 break;
             case (2):
-                Player.SetActive(true);
-                currentModel = Player;
-                
+                go_Player.SetActive(true);
+                go_currentModel = go_Player;
+                T_infoText.text = "Info\nA: Walk Animation\nS: Attack Animation\nHold S: Multiple Attack animations(Only Player)\nD: Death Animation\n\nLeft and Right arrows: Rotate model\n\nSpace: Next Model\n\nL: Next Background";
+
                 break;
             case (3):
-                Goblin.SetActive(true);
-                currentModel = Goblin;
+                go_Goblin.SetActive(true);
+                go_currentModel = go_Goblin;
+                T_infoText.text = "Info\nA: Walk Animation\nS: Attack Animation\nD: Death Animation\n\nLeft and Right arrows: Rotate model\n\nSpace: Next Model\n\nL: Next Background";
+
                 break;
             case (4):
-                Mimic.SetActive(true);
-                currentModel = Mimic;
+                go_Mimic.SetActive(true);
+                go_currentModel = go_Mimic;
+                T_infoText.text = "Info\nS: Attack Animation\nD: Death Animation\n\nLeft and Right arrows: Rotate model\n\nSpace: Next Model\n\nL: Next Background";
+
                 break;
             case (5):
-                modelNumber = 1;
+                int_modelNumber = 1;
                 break;
         }
 

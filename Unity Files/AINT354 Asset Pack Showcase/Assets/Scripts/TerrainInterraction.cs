@@ -6,83 +6,52 @@ public class TerrainInterraction : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject terrain, water, treeModel_1,treeModel_2, torchModel_1, torchModel_2;
+    private GameObject go_Village, go_Mountains, go_Foreground;
 
-    [SerializeField]
-    private MeshRenderer terrainRenderer, waterRenderer;
-
-    [SerializeField]
-    private Material rockMaterial, grassMaterial, waterMaterial, lavaMaterial;
-
-    private int terrainNumber = 1;
+    private int int_TerrainNumber = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-        torchModel_1.SetActive(false);
-        torchModel_2.SetActive(false);
-        terrainRenderer = terrain.GetComponent<MeshRenderer>();
-        waterRenderer = water.GetComponent<MeshRenderer>();
-
-        terrainRenderer.material = grassMaterial;
-        waterRenderer.material = waterMaterial;
+        //go_Village.SetActive(false);
+        //go_Mountains.SetActive(true);
+        //go_Foreground.SetActive(false);
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
+        //Await L Key press to increase terrainNumber
         if (Input.GetKeyDown(KeyCode.L))
         {
-            terrainNumber++;
+            int_TerrainNumber++;
         }
 
-
-        switch (terrainNumber)
+        //When terrainNumber changes, change background and terrain assets 
+        switch (int_TerrainNumber)
         {
             case (1):
-                disableForest();
-                enableCave();
-
+                //Village area loads
+                go_Village.SetActive(true);
+                go_Foreground.SetActive(true);
+                go_Mountains.SetActive(false);
 
                 break;
             case (2):
-                disableCave();
-                enableForest();
+                //Cave area loads
+                go_Village.SetActive(false);
+                go_Foreground.SetActive(false);
+                go_Mountains.SetActive(true);
 
                 break;
             case (3):
-                terrainNumber = 1;
+                //reverts to village area
+                int_TerrainNumber = 1;
                 break;
         }
 
 
     }
 
-    void enableForest()
-    {
-        terrainRenderer.material = grassMaterial;
-        waterRenderer.material = waterMaterial;
-        treeModel_1.SetActive(true);
-        treeModel_2.SetActive(true);
-    }
-
-    void disableForest()
-    {
-        treeModel_1.SetActive(false);
-        treeModel_2.SetActive(false);
-    }
-
-    void enableCave()
-    {
-        terrainRenderer.material = rockMaterial;
-        waterRenderer.material = lavaMaterial;
-        torchModel_1.SetActive(true);
-        torchModel_2.SetActive(true);
-    }
-
-    void disableCave()
-    {
-        torchModel_1.SetActive(false);
-        torchModel_2.SetActive(false);
-    }
+    
 }

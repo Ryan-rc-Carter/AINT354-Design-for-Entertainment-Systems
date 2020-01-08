@@ -5,34 +5,34 @@ using UnityEngine;
 public class MimicAnimation : MonoBehaviour
 {
 
-    private Animator animator;
+    private Animator ani_animator;
 
     // Start is called before the first frame update
     void Awake()
     {
-        animator = GetComponent<Animator>();
+        ani_animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Series of input handlers to display a certain animation when a button is pressed
         if (Input.GetKeyDown(KeyCode.S))
         {
-            animator.SetBool("isAttacking", true);
+            ani_animator.SetBool("isAttacking", true);
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
-            animator.SetBool("isAttacking", false);
+            ani_animator.SetBool("isAttacking", false);
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            animator.SetBool("isDead", true);
+            ani_animator.SetBool("isDead", true);
         }
         else if (Input.GetKeyUp(KeyCode.D))
         {
-            animator.SetBool("isDead", false);
+            ani_animator.SetBool("isDead", false);
         }
     }
 }
